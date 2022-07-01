@@ -20,5 +20,5 @@ wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
 sudo apt update
 
 # Install PHP
-sudo apt install php8.1 # You can replace with any other version of PHP
+sudo apt install php8.1 # You can replace with any other version of PHP i. e. php5.6
 ```
