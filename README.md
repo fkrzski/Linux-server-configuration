@@ -115,7 +115,51 @@ During installation you must set root account password and select authentication
 > ## Configuration  of MySQL
 1. Run secure installation
 ```shell
-mysal_secure_installation
+mysql_secure_installation
 ```
 During installation, you need to select the password validation level, choose whether you want to change the root password (if set), delete anonymous users or not, prohibit remote root login, delete the test database and reload the permissions. <br>
 I recommend: 2, No (if set), Yes, Yes, Yes, Yes
+
+# phpMyAdmin
+> ## Install phpMyAdmin
+1. Update and upgrade apt
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+2. Install phpMyAdmin and required packages
+```shell
+sudo apt install wget php8.1 php8.1-cgi php8.1-mysqli php8.1-pear php8.1-mbstring libapache2-mod-php php8.1-common php8.1-phpseclib php8.1-mysql phpmyadmin -y
+```
+You can choose your PHP version
+
+> ## Resolve `Deprecated...` warnings and errors
+1. Go to folder with phpMyAdmin
+```shell
+cd /usr/share
+```
+
+2. Create backup of phpMyAdmin
+`-r` flag is `Recursive` attribute
+```shell
+sudo cp -r phpmyadmin/ phpmyadminold/
+```
+
+3. Remove olf folder
+```shell
+sudo rm -rf phpmyadmin
+```
+
+4. Choose phpMyAdmin version <br>
+Go to [phpMyAdmin version list](https://www.phpmyadmin.net/files/), select wanted version and copy link.
+
+5. Unzip downloaded folder
+```shell
+sudo unzip phpMyAdmin*
+```
+
+6. Copy downloaded folder
+```shell
+# X.X.X is your version of phpMyAdmin
+cp -r phpMyAdmin-X.X.X-all-languages phpmyadmin
+```
