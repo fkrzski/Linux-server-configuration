@@ -50,6 +50,34 @@ sudo apt install php8.1 -y # You can replace with any other version of PHP i. e.
 ```
 
 
+# Composer
+> ## Installation
+1. Update and upgrade apt
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+2. Install required PHP packages
+```shell
+sudo apt install wget php-cli php-zip unzip -y
+```
+
+3. Download installer
+```
+wget -O composer-setup.php https://getcomposer.org/installer
+```
+
+4. Install composer globally
+```
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+```
+
+5. Update composer
+```
+sudo composer self-update  
+```
+
+
 
 # MySQL
 Installation and basic configuration of MySQL and MySQL server
