@@ -194,25 +194,32 @@ cp -r phpMyAdmin-X.X.X-all-languages phpmyadmin
 
 
 # NVM
-1. Update and upgrade apt
-```shell
-sudo apt update && sudo apt upgrade -y
-```
-
-2. Download NVM
+1. Download NVM
 ```shell
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sudo bash 
 ```
 
-3. Use this (I don't know why, but without this not working xD)
+2. Use this (I don't know why, but without this not working xD)
 ```shell
 sudo source ~/.bashrc
 ```
 
 
 # NodeJS and NPM
-> ## Install using NVM
 1. Install
 ```shell
 nvm install 16.13.1  # Replace with wanted Node version
+```
+
+
+
+# Git
+1. Update and upgrade apt
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+2. Install Git
+```shell
+sudo apt install git
 ```
