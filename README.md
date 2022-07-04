@@ -223,3 +223,22 @@ sudo apt update && sudo apt upgrade -y
 ```shell
 sudo apt install git
 ```
+
+
+
+# Google 2 Factor Authentication (2FA)
+1. Update and upgrade apt
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+2. Install pacakge
+```shell
+sudo apt install -y libpam-google-authenticator
+```
+
+3. Enable Google 2FA
+```shell
+google-authenticator
+```
+And configure package to you preferences
