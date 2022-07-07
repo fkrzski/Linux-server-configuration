@@ -272,3 +272,14 @@ auth   required   pam_google_authenticator.so
 ```shell
 sudo systemctl restart ssh
 ```
+
+
+# Generate SSH key
+```shell
+ssh-keygen -t rsa
+```
+
+Get key:
+```shell
+cat /root/.ssh/id_rsa.pub
+```
