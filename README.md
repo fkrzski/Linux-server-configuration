@@ -192,6 +192,18 @@ sudo unzip phpMyAdmin*
 cp -r phpMyAdmin-X.X.X-all-languages phpmyadmin
 ```
 
+# Apache2 virtualhosts
+1. Create a domain directory
+```shell
+sudo mkdir /var/www/domain.com
+```
+
+2. Change owner and mod of domain
+```shell
+sudo chown -R www-data:www-data /var/www/domain.com
+sudo chmod -R 755 /var/www/my_domain.com
+ ```
+
 
 # NVM
 1. Download NVM
@@ -202,6 +214,48 @@ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sudo b
 2. Use this (I don't know why, but without this not working xD)
 ```shell
 sudo source ~/.bashrc
+```
+
+3. Create a configuration file for a domain
+```shell
+sudo nano /etc/apache2/sites-available/my_domain.com.conf
+```
+
+4. Put to .conf file this content
+```shell
+<VirtualHost *:80>
+  ServerAdmin admin@my_domain.com
+  ServerName my_domain.com
+  ServerAlias www.my_domain.com
+  DocumentRoot /var/www/my_domain.com/public_html
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+<Directory /var/www/html/example.com/public_html>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+```
+
+5. Restart Apache2
+```shell
+sudo systemctl restart apache2
+```
+
+6. Enable site in `a2ensite`
+```shell
+sudo a2ensite my_domain.com.conf
+```
+
+7. (If enabled) disable default `a2ensite` website
+```shell
+sudo a2dissite 000-default.conf
+```
+
+8. RELOAD Apache2
+```shell
+sudo systemctl reload apache2
 ```
 
 
