@@ -195,27 +195,15 @@ cp -r phpMyAdmin-X.X.X-all-languages phpmyadmin
 # Apache2 virtualhosts
 1. Create a domain directory
 ```shell
-sudo mkdir /var/www/domain.com
+sudo mkdir /var/www/html/domain.com
 ```
 
 2. Change owner and mod of domain
 ```shell
-sudo chown -R www-data:www-data /var/www/domain.com
-sudo chmod -R 755 /var/www/my_domain.com
+sudo chown -R www-data:www-data /var/www/html/my_domain.com
+sudo chmod -R 755 /var/www/html/my_domain.com
  ```
-
-
-# NVM
-1. Download NVM
-```shell
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sudo bash 
-```
-
-2. Use this (I don't know why, but without this not working xD)
-```shell
-sudo source ~/.bashrc
-```
-
+ 
 3. Create a configuration file for a domain
 ```shell
 sudo nano /etc/apache2/sites-available/my_domain.com.conf
@@ -224,18 +212,27 @@ sudo nano /etc/apache2/sites-available/my_domain.com.conf
 4. Put to .conf file this content
 ```shell
 <VirtualHost *:80>
-  ServerAdmin admin@my_domain.com
-  ServerName my_domain.com
-  ServerAlias www.my_domain.com
-  DocumentRoot /var/www/my_domain.com/public_html
-  ErrorLog ${APACHE_LOG_DIR}/error.log
-  CustomLog ${APACHE_LOG_DIR}/access.log combined
+     ServerAdmin admin@my_doamin.com
+     ServerName my_doamin.com
+     ServerAlias www.my_doamin.com
+
+     DocumentRoot /var/www/html/my_doamin.com/public/
+
+     <Directory /var/www/html/my_doamin.com/public>
+         Options Indexes FollowSymLinks
+         AllowOverride All
+         Require all granted
+     </Directory>
+
+     ErrorLog ${APACHE_LOG_DIR}/error.log
+     CustomLog ${APACHE_LOG_DIR}/access.log combined
+     
+# SSL certificate, from HTTP to HTTPS
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =my_doamin.com [OR]
+RewriteCond %{SERVER_NAME} =www.my_doamin.com
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
-<Directory /var/www/html/example.com/public_html>
-    Options Indexes FollowSymLinks
-    AllowOverride All
-    Require all granted
-</Directory>
 ```
 
 5. Restart Apache2
@@ -256,6 +253,17 @@ sudo a2dissite 000-default.conf
 8. RELOAD Apache2
 ```shell
 sudo systemctl reload apache2
+```
+
+# NVM
+1. Download NVM
+```shell
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sudo bash 
+```
+
+2. Use this (I don't know why, but without this not working xD)
+```shell
+sudo source ~/.bashrc
 ```
 
 
