@@ -263,7 +263,7 @@ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sudo b
 
 2. Use this (I don't know why, but without this not working xD)
 ```shell
-sudo source ~/.bashrc
+source ~/.bashrc
 ```
 
 
