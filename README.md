@@ -345,3 +345,36 @@ Get key:
 ```shell
 cat /root/.ssh/id_rsa.pub
 ```
+
+
+# Certbot
+> ## Install Certbot
+1. Update and upgrade apt
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+2. Install snapd
+```shell
+sudo apt install snapd -y
+```
+3. Install snap core
+```shell
+sudo snap install core
+```
+4. Refresh shanp core
+```shell
+sudo snap refresh core
+```
+5. Install certbot
+```shell
+sudo snap install --classic certbot
+```
+5. Add symbolic link
+```shell
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+```
+
+> ## Add certificate to website
+```shell
+sudo certbot --apache --agree-tos --redirect -m email@email.com -d my_domain.com -d www.my_domain.com
+```
