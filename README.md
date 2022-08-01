@@ -378,3 +378,61 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 ```shell
 sudo certbot --apache --agree-tos --redirect -m email@email.com -d my_domain.com -d www.my_domain.com
 ```
+
+
+
+# Python 3.10
+> ## Installation
+1. Update and upgrade apt
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+2. Install required package
+```shell
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev -y
+```
+
+3. Download
+```shell
+wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
+```
+
+4. Unpack
+```shell
+sudo tar -xvf Python-3.10.0.tgz
+```
+
+5. Enter folder
+```shell
+cd Python-3.10.0
+```
+
+6. Install
+```shell
+sudo ./configure --enable-optimizations
+```
+
+7. Make Python
+```shell
+sudo make -j 2
+```
+
+8. Nproc
+```shell
+nproc
+```
+
+9. Altinstall
+```shell
+sudo make altinstall
+```
+
+
+# PIP3
+> ## Installation
+```shell
+sudo apt install python3-venv python3-pip -y
+
+sudo -H pip3 install --upgrade pip
+```
