@@ -393,58 +393,74 @@ sudo ng version
 ```
 
 
-# Python 3.10
-> ## Installation
-1. Update and upgrade apt
+# Python
+## Installation
+#### 1. Update and upgrade `apt` package manager
 ```shell
 sudo apt update && sudo apt upgrade -y
 ```
 
-2. Install required package
+#### 2. Install required packages
 ```shell
 sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev -y
 ```
 
-3. Download
+#### 3. Download Python from official website
+You can select another version from [here](https://www.python.org/ftp/python/)
 ```shell
 wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
 ```
 
-4. Unpack
+#### 4. Unzip downloaded package to install 
 ```shell
 sudo tar -xvf Python-3.10.0.tgz
 ```
 
-5. Enter folder
+#### 5. Enter Python folder
 ```shell
 cd Python-3.10.0
 ```
 
-6. Install
+#### 6. Run configure script for Python 
 ```shell
 sudo ./configure --enable-optimizations
 ```
 
-7. Make Python
+#### 7. Make Python installation
 ```shell
 sudo make -j 2
 ```
 
-8. Nproc
-```shell
-nproc
-```
-
-9. Altinstall
+#### 8. Make alt-install for Python
 ```shell
 sudo make altinstall
 ```
 
+#### 9. Check installation
+```shell
+sudo python3.10 --version
+```
 
-# PIP3
-> ## Installation
+## PIP3
+#### 1. Install required packages
 ```shell
 sudo apt install python3-venv python3-pip -y
+```
 
-sudo -H pip3 install --upgrade pip
+#### 2. Install PIP and automatically upgrade
+```shell
+sudo pip3 install --upgrade pip
+```
+
+
+# Other packages
+## Sudo
+#### 1. Update and upgrade `apt` package manager
+```shell
+apt update && apt upgrade -y
+```
+
+#### 2. Install `sudo` package
+```shell
+apt install sudo -y
 ```
