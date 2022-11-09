@@ -295,12 +295,31 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
 ## Working with certificates
 #### Adding certificate do domain
-You need to replace all `domain.com` with your domain name and `email@email.com` with your email address
+You need to replace all `domain.com` with your domain name and `email@email.com` with your email address <br><br>
+***You need to add new certificate for all subdomains!***
 ```shell
 sudo certbot --apache --agree-tos --redirect -m email@email.com -d domain.com -d www.domain.com
 ```
 
 If this is your first certificate on machine you need to agree wih TOS - type `Y` and press ENTER
+
+
+# Git
+#### 1. Update and upgrade `apt` package manager
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+#### 2. Install Git
+```shell
+sudo apt install git -y
+```
+
+#### 3. Check installation
+```shell
+sudo git --version
+```
+
 
 
 # NVM
@@ -322,17 +341,6 @@ nvm install 16.13.1  # Replace with wanted Node version
 ```
 
 
-
-# Git
-1. Update and upgrade apt
-```shell
-sudo apt update && sudo apt upgrade -y
-```
-
-2. Install Git
-```shell
-sudo apt install git
-```
 
 
 
