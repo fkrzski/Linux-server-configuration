@@ -452,6 +452,14 @@ sudo apt install python3-venv python3-pip -y
 sudo pip3 install --upgrade pip
 ```
 
+## Change default version of Python
+#### 1. Update alternatives for Python
+You need to change `/usr/local/bin/python3.10` to path to Python version that you want to set as default. <br>
+`1` number is a priority. `1` is the highest.
+```shell
+sudo update-alternatives --install /usr/bin/python python /usr/local/bin/python3.10 1
+```
+
 
 # Other packages
 ## Sudo
