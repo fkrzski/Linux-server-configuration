@@ -43,7 +43,7 @@ sudo apt install php8.1 -y
 php --version
 ```
 
-## Configuration
+## Optional configuration
 All changes are in `php.ini` file. If you want set changes for CLI you need to update `.ini` file from `/etc/php/8.1/cli/` directory. But if you want changes for websites you need to change `.ini` file from `/etc/php/8.1/apache2/` directory
 ```shell
 sudo nano /etc/php/8.1/cli/php.ini
