@@ -216,13 +216,13 @@ sudo nano /etc/apache2/sites-available/domain.com.conf
 #### 3. Configure Virtual Host for your website
 ```shell
 <VirtualHost *:80>
-     ServerAdmin admin@my_doamin.com
-     ServerName my_doamin.com
-     ServerAlias www.my_doamin.com
+     ServerAdmin admin@domain.com
+     ServerName domain.com
+     ServerAlias www.domain.com
 
-     DocumentRoot /var/www/html/my_doamin.com/public/
+     DocumentRoot /websites/domain.com
 
-     <Directory /var/www/html/my_doamin.com/public>
+     <Directory /websites/domain.com>
          Options Indexes FollowSymLinks
          AllowOverride All
          Require all granted
@@ -233,8 +233,8 @@ sudo nano /etc/apache2/sites-available/domain.com.conf
      
 # SSL certificate, from HTTP to HTTPS
 RewriteEngine on
-RewriteCond %{SERVER_NAME} =my_doamin.com [OR]
-RewriteCond %{SERVER_NAME} =www.my_doamin.com
+RewriteCond %{SERVER_NAME} =domain.com [OR]
+RewriteCond %{SERVER_NAME} =www.domain.com
 RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 ```
