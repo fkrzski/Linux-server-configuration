@@ -193,30 +193,27 @@ sudo cp /usr/share/phpmyadmin/config.sample.inc.php /usr/share/phpmyadmin/config
 sudo nano /usr/share/phpmyadmin/config.inc.php
 ```
 
-Go to line 16 (Press CTRL + G, type `16` and press ENTER) and set up variable (Must be 32 characters long!)
+Go to line 16 (Press CTRL + SHIFT + -, type `16` and press ENTER) and set up variable (Must be 32 characters long!)
 ```shell
 $cfg['blowfish_secret'] = '11112222333344445555666677778888'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
 ```
 
 
 # Apache2 virtualhosts
-1. Create a domain directory
-```shell
-sudo mkdir /var/www/html/domain.com
-```
+You need to rename all `domain.com` with yours domain name
 
-2. Change owner and mod of domain
+#### 1. Create a domain directory
+The `-p` flag create a `/websites` folder if you don't have it
 ```shell
-sudo chown -R www-data:www-data /var/www/html/my_domain.com
-sudo chmod -R 755 /var/www/html/my_domain.com
- ```
+sudo mkdir -p /websites/domain.com
+```
  
-3. Create a configuration file for a domain
+#### 2. Create a configuration file for a domain
 ```shell
-sudo nano /etc/apache2/sites-available/my_domain.com.conf
+sudo nano /etc/apache2/sites-available/domain.com.conf
 ```
 
-4. Put to .conf file this content
+#### 3. Configure Virtual Host for your website
 ```shell
 <VirtualHost *:80>
      ServerAdmin admin@my_doamin.com
@@ -242,22 +239,22 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 ```
 
-5. Restart Apache2
+#### 4. Restart Apache2 server
 ```shell
 sudo systemctl restart apache2
 ```
 
-6. Enable site in `a2ensite`
+#### 5. Enable site using `a2ensite`
 ```shell
-sudo a2ensite my_domain.com.conf
+sudo a2ensite domain.com.conf
 ```
 
-7. (If enabled) disable default `a2ensite` website
+#### 6. Enable `rewrite` module in `a2ensite`
 ```shell
-sudo a2dissite 000-default.conf
+sudo a2enmod rewrite
 ```
 
-8. RELOAD Apache2
+#### 7. Restart Apache2
 ```shell
 sudo systemctl reload apache2
 ```
