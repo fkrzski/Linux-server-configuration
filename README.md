@@ -381,6 +381,16 @@ sudo node -v
 ```
 
 
+# Angular CLI
+#### 1. Install Angular CLI globally using `-g` flag
+```shell
+sudo npm install -g @angular/cli
+```
+
+#### 2. Check installation
+```shell
+sudo ng version
+```
 
 
 # Google 2 Factor Authentication (2FA)
