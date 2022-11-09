@@ -259,6 +259,50 @@ sudo a2enmod rewrite
 sudo systemctl reload apache2
 ```
 
+
+# Certbot
+## Installing Certbot
+
+#### 1. Update and upgrade `apt` package manager
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+#### 2. Install `snapd` package for another package managing
+```shell
+sudo apt install snapd -y
+```
+
+#### 3. Install `core` package using `snap`
+```shell
+sudo snap install core
+```
+
+#### 4. Refresh `core` using `snap`
+```shell
+sudo snap refresh core
+```
+
+#### 5. Install Let'sEncrypt `certbot` using `snap` package
+```shell
+sudo snap install --classic certbot
+```
+
+#### 6. Add symbolic link between snap installation folder and user sharable folder
+```shell
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+```
+
+## Working with certificates
+#### Adding certificate do domain
+You need to replace all `domain.com` with your domain name and `email@email.com` with your email address
+```shell
+sudo certbot --apache --agree-tos --redirect -m email@email.com -d domain.com -d www.domain.com
+```
+
+If this is your first certificate on machine you need to agree wih TOS - type `Y` and press ENTER
+
+
 # NVM
 1. Download NVM
 ```shell
@@ -349,40 +393,6 @@ Get key:
 ```shell
 cat /root/.ssh/id_rsa.pub
 ```
-
-
-# Certbot
-> ## Install Certbot
-1. Update and upgrade apt
-```shell
-sudo apt update && sudo apt upgrade -y
-```
-2. Install snapd
-```shell
-sudo apt install snapd -y
-```
-3. Install snap core
-```shell
-sudo snap install core
-```
-4. Refresh shanp core
-```shell
-sudo snap refresh core
-```
-5. Install certbot
-```shell
-sudo snap install --classic certbot
-```
-5. Add symbolic link
-```shell
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
-```
-
-> ## Add certificate to website
-```shell
-sudo certbot --apache --agree-tos --redirect -m email@email.com -d my_domain.com -d www.my_domain.com
-```
-
 
 
 # Python 3.10
