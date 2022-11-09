@@ -43,30 +43,36 @@ php --version
 
 
 # Composer
-> ## Installation
-1. Update and upgrade apt
+#### 1. Update and upgrade apt
 ```shell
 sudo apt update && sudo apt upgrade -y
 ```
 
-2. Install required PHP packages
+#### 2. Install required PHP packages
+Replace `php8.1` with yours PHP version
 ```shell
-sudo apt install wget php-cli php-zip unzip -y
+sudo apt install wget php8.1-cli php8.1-zip unzip -y
 ```
 
-3. Download installer
-```
+#### 3. Download Composer installer
+```shell
 wget -O composer-setup.php https://getcomposer.org/installer
 ```
 
-4. Install composer globally
-```
+#### 4. Install Composer globally (For all users)
+You can change installation directory by changing `/usr/local/bin` in `--install-dir=` parameter
+```shell
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ```
 
-5. Update composer
-```
+#### 5. Update Composer
+```shell
 sudo composer self-update  
+```
+
+#### 5. Check Composer version
+```shell
+sudo composer --version  
 ```
 
 
