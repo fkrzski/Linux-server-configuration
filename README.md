@@ -129,48 +129,75 @@ I recommend: 2, No (if set), Yes, Yes, Yes, Yes
 
 
 # phpMyAdmin
-> ## Install phpMyAdmin
-1. Update and upgrade apt
+## Install phpMyAdmin
+#### 1. Update and upgrade `apt` package manager
 ```shell
 sudo apt update && sudo apt upgrade -y
 ```
 
-2. Install phpMyAdmin and required packages
+#### 2. Install `phpMyAdmin` and required packages
+Change `php8.1` to your version, for example `php5.6`
 ```shell
-sudo apt install wget php8.1 php8.1-cgi php8.1-mysqli php8.1-pear php8.1-mbstring libapache2-mod-php php8.1-common php8.1-phpseclib php8.1-mysql phpmyadmin -y
+sudo apt install wget php8.1 php8.1-cgi php8.1-mysqli php8.1-mbstring libapache2-mod-php php8.1-common php8.1-mysql phpmyadmin -y
 ```
-You can choose your PHP version
+During installation, you need to select phpMyAdmin type (Apache or lighthttpd). Press SPACE to select, TAB and ENTER.
+Next you must set up password to phpMyAdmin user and confirm it with root password (Set up in MySQL section)
 
-> ## Resolve `Deprecated...` warnings and errors
-1. Go to folder with phpMyAdmin
+## Configure phpMyAdmin and resolve `Deprecated...` warnings and errors
+#### 1. Go to folder with phpMyAdmin
 ```shell
 cd /usr/share
 ```
 
-2. Create backup of phpMyAdmin
-`-r` flag is `Recursive` attribute
+#### 2. Create backup of phpMyAdmin
 ```shell
-sudo cp -r phpmyadmin/ phpmyadminold/
+sudo mv phpmyadmin/ phpmyadminold/
 ```
 
-3. Remove olf folder
-```shell
-sudo rm -rf phpmyadmin
-```
-
-4. Choose phpMyAdmin version <br>
+#### 3. Choose phpMyAdmin version and download
 Go to [phpMyAdmin version list](https://www.phpmyadmin.net/files/), select wanted version and copy link.
+```shell
+wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip
+```
 
-5. Unzip downloaded folder
+#### 4. Unzip downloaded folder
 ```shell
 sudo unzip phpMyAdmin*
 ```
 
-6. Copy downloaded folder
+#### 5. Copy downloaded directory and rename
 ```shell
-# X.X.X is your version of phpMyAdmin
-cp -r phpMyAdmin-X.X.X-all-languages phpmyadmin
+sudo cp -r phpMyAdmin-5.2.0-all-languages phpmyadmin
+
+# Optionally you can remove old directory
+sudo rm -rf phpmyadminold
 ```
+
+#### 6. Create `/tmp` directory for phpMyAdmin
+```shell
+sudo mkdir /usr/share/phpmyadmin/tmp
+```
+
+#### 7. Change permission to created directory
+```shell
+sudo chmod -R 777 /usr/share/phpmyadmin/tmp
+```
+
+#### 8. Copy config file for `phpMyAdmin`
+```shell
+sudo cp /usr/share/phpmyadmin/config.sample.inc.php /usr/share/phpmyadmin/config.inc.php 
+```
+
+#### 9. Set up `blowfisz_secret` encrypting property
+```shell
+sudo nano /usr/share/phpmyadmin/config.inc.php
+```
+
+Go to line 16 (Press CTRL + G, type `16` and press ENTER) and set up variable (Must be 32 characters long!)
+```shell
+$cfg['blowfish_secret'] = '11112222333344445555666677778888'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+```
+
 
 # Apache2 virtualhosts
 1. Create a domain directory
