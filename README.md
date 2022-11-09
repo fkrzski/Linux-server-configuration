@@ -351,25 +351,34 @@ sudo git --version
 ```
 
 
-
-# NVM
-1. Download NVM
+# SSH keys
+#### 1. Generate SSH key
 ```shell
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sudo bash 
+sudo ssh-keygen -t rsa
 ```
 
-2. Use this (I don't know why, but without this not working xD)
+#### 2. Get SSH key:
 ```shell
-source ~/.bashrc
+sudo cat /root/.ssh/id_rsa.pub
 ```
 
 
 # NodeJS and NPM
-1. Install
+#### 1. Add `.deb` package to package manager
+Replace `16.x` with wanted version of NodeJS
 ```shell
-nvm install 16.13.1  # Replace with wanted Node version
+curl -s https://deb.nodesource.com/setup_16.x | sudo bash
 ```
 
+#### 2. Install NodeJS using `apt` package manager
+```shell
+sudo apt install nodejs -y
+```
+
+#### 3. Check installation
+```shell
+sudo node -v
+```
 
 
 
@@ -422,15 +431,7 @@ sudo systemctl restart ssh
 ```
 
 
-# Generate SSH key
-```shell
-ssh-keygen -t rsa
-```
 
-Get key:
-```shell
-cat /root/.ssh/id_rsa.pub
-```
 
 
 # Python 3.10
