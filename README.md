@@ -393,57 +393,6 @@ sudo ng version
 ```
 
 
-# Google 2 Factor Authentication (2FA)
-> ## Install
-1. Update and upgrade apt
-```shell
-sudo apt update && sudo apt upgrade -y
-```
-
-2. Install pacakge
-```shell
-sudo apt install -y libpam-google-authenticator
-```
-
-
-> ## Configure
-1. Enable Google 2FA
-```shell
-google-authenticator
-```
-And configure package to you preferences
-
-2. Configure SSH
-```shell
-sudo nano /etc/ssh/sshd_config
-
-# And change or add these lines
-#
-UsePAM yes
-ChallengeResponseAuthentication yes
-PermitRootLogin yes
-```
-
-3. Configure SSH PAM
-```shell
-sudo nano /etc/pam.d/sshd
-
-# Add or change these lines
-#
-@include common-auth
-# two-factor authentication via Google Authenticator
-auth   required   pam_google_authenticator.so
-```
-
-4. Restart SSH
-```shell
-sudo systemctl restart ssh
-```
-
-
-
-
-
 # Python 3.10
 > ## Installation
 1. Update and upgrade apt
