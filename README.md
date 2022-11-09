@@ -464,3 +464,36 @@ apt update && apt upgrade -y
 ```shell
 apt install sudo -y
 ```
+
+## Firefox
+#### 1. Update and upgrade `apt` package manager
+```shell
+apt update && apt upgrade -y
+```
+
+#### 2. Install browser using `apt` package manager
+```shell
+sudo apt install firefox-esr -y
+```
+
+
+## Geckodriver
+#### 1. Update and upgrade `apt` package manager
+```shell
+apt update && apt upgrade -y
+```
+
+#### 2. Download `tar` archive with Geckodriver
+```shell
+wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz
+```
+
+#### 3. Extract archive 
+```shell
+sudo tar -xvzf geckodriver-v0.32.0-linux64.tar.gz
+```
+
+#### 4. Make file executable
+```shell
+sudo chmod +x geckodriver
+```
