@@ -5,6 +5,8 @@
 
 
 # PHP
+## Installation
+
 #### 1. Update and upgrade `apt` package manager
 ```shell
 sudo apt update && sudo apt upgrade -y
@@ -41,6 +43,34 @@ sudo apt install php8.1 -y
 php --version
 ```
 
+## Configuration
+All changes are in `php.ini` file. If you want set changes for CLI you need to update `.ini` file from `/etc/php/8.1/cli/` directory. But if you want changes for websites you need to change `.ini` file from `/etc/php/8.1/apache2/` directory
+```shell
+sudo nano /etc/php/8.1/cli/php.ini
+```
+
+After changing in `apache2` directory you must ***ALWAYS*** restart Apache2 server
+```shell
+sudo systemctl restart apache2
+```
+
+In `nano` you can go to specific line using CTRL + SHIFT + - , typing line number and pressing ENTER
+
+#### Bigger POST upload size
+```shell
+post_max_size = 16M # Line 698
+```
+
+#### Bigger file upload size
+```shell
+upload_max_filesize = 16M # Line 850
+```
+
+#### More memory limit
+```shell
+memory_limit = 256M # Line 430
+```
+
 
 # Composer
 #### 1. Update and upgrade `apt` package manager
@@ -70,7 +100,7 @@ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 sudo composer self-update  
 ```
 
-#### 5. Check Composer version
+#### 6. Check Composer version
 ```shell
 sudo composer --version  
 ```
