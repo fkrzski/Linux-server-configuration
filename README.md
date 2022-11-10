@@ -246,26 +246,26 @@ sudo nano /etc/apache2/sites-available/domain.com.conf
 #### 3. Configure Virtual Host for your website
 ```shell
 <VirtualHost *:80>
-     ServerAdmin admin@domain.com
-     ServerName domain.com
-     ServerAlias www.domain.com
-
-     DocumentRoot /websites/domain.com
-
-     <Directory /websites/domain.com>
-         Options Indexes FollowSymLinks
-         AllowOverride All
-         Require all granted
-     </Directory>
-
-     ErrorLog ${APACHE_LOG_DIR}/error.log
-     CustomLog ${APACHE_LOG_DIR}/access.log combined
+    ServerAdmin admin@domain.com
+    ServerName domain.com
+    ServerAlias www.domain.com
+    
+    DocumentRoot /websites/domain.com
+    
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    
+    <Directory /websites/domain.com>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
      
-# SSL certificate, from HTTP to HTTPS
-RewriteEngine on
-RewriteCond %{SERVER_NAME} =domain.com [OR]
-RewriteCond %{SERVER_NAME} =www.domain.com
-RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+    # SSL certificate, from HTTP to HTTPS
+    RewriteEngine on
+    RewriteCond %{SERVER_NAME} =domain.com [OR]
+    RewriteCond %{SERVER_NAME} =www.domain.com
+    RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 ```
 
@@ -287,6 +287,21 @@ sudo a2enmod rewrite
 #### 7. Restart Apache2
 ```shell
 sudo systemctl reload apache2
+```
+
+#### 8. Setting up default Virtual Host to works correct
+If you want host something on default host (`000-deafult.conf`) - for example: *RoundCube* - you need to set `<Directory>` tag in this Virtual Host like this:
+```shell
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+And under `CustomLog ${APACHE_LOG_DIR}/access.log combined` line you must put this lines
+```shell
+<Directory /var/www/html>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
 ```
 
 
