@@ -19,28 +19,28 @@ sudo apt install -y lsb-release ca-certificates apt-transport-https software-pro
 
 #### 3. Add Ondrej Surý repository to sources list to be able to download and install PHP 8.*
 ```shell
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/sury-php.list
+sudo add-apt-repository ppa:ondrej/php
 ```
 
-#### 4. Sign GPG (apt-key) key
-```shell
-wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
-```
-
-#### 5. Update `apt` package manager
+#### 4. Update `apt` package manager
 ```shell
 sudo apt update
 ```
 
-#### 6. Install PHP
+#### 5. Install PHP
 You can replace with any other version of PHP, for example `php5.6`
 ```shell
 sudo apt install php8.1 -y 
 ```
 
-#### 7. Check installation
+#### 6. Check installation
 ```shell
 php --version
+```
+
+#### 7. Optional most used packages
+```shell
+sudo apt install php8.1-{bcmath,xml,fpm,mysql,zip,intl,ldap,gd,cli,bz2,curl,mbstring,pgsql,opcache,soap,cgi} -y
 ```
 
 ## Optional configuration
